@@ -1,6 +1,5 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -12,8 +11,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import TableChartRoundedIcon from "@mui/icons-material/TableChartRounded";
+import Box from "@mui/material/Box";
+import { Link as RouterLink } from "react-router-dom";
 
-const pages = ["Dashboard", "About", "Stats"];
+const pages = [
+  { label: "Dashboard", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Stats", path: "/stats" },
+];
 const settings = ["Profile", "Account", "Settings", "Logout"];
 
 function Navbar() {
@@ -72,9 +77,19 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))} */}
+              {pages.map((page) => (
+                <MenuItem
+                  key={page.label}
+                  component={RouterLink}
+                  to={page.path}
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -105,7 +120,7 @@ function Navbar() {
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 2 }}>
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -118,6 +133,22 @@ function Navbar() {
                 }}
               >
                 {page}
+              </Button> */}
+            {pages.map((page) => (
+              <Button
+                key={page.label}
+                component={RouterLink}
+                to={page.path}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontWeight: 700,
+                  letterSpacing: 1,
+                }}
+              >
+                {page.label}
               </Button>
             ))}
           </Box>

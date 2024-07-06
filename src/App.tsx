@@ -1,13 +1,29 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { HomeLayout, Dashboard, Stats, About } from "./pages";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "stats",
+        element: <Stats />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
