@@ -1,4 +1,7 @@
 import * as React from "react";
+
+import { useTheme } from "@mui/material/styles";
+
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -22,6 +25,8 @@ const pages = [
 const settings = ["Profile", "Account", "Settings", "Logout"];
 
 function Navbar() {
+  const theme = useTheme();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -75,13 +80,11 @@ function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                // "& .MuiPaper-root": {
+                //   bgcolor: theme.palette.primary.light,
+                // },
               }}
             >
-              {/* {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))} */}
               {pages.map((page) => (
                 <MenuItem
                   key={page.label}
@@ -120,20 +123,6 @@ function Navbar() {
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 2 }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  fontWeight: 700,
-                  letterSpacing: 1,
-                }}
-              >
-                {page}
-              </Button> */}
             {pages.map((page) => (
               <Button
                 key={page.label}
@@ -160,7 +149,12 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{
+                mt: "45px",
+                // "& .MuiPaper-root": {
+                //   bgcolor: theme.palette.primary.light,
+                // },
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
