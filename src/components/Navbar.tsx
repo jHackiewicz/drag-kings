@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { useTheme } from "@mui/material/styles";
-
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -25,8 +23,6 @@ const pages = [
 const settings = ["Profile", "Account", "Settings", "Logout"];
 
 function Navbar() {
-  const theme = useTheme();
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -80,9 +76,6 @@ function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-                // "& .MuiPaper-root": {
-                //   bgcolor: theme.palette.primary.light,
-                // },
               }}
             >
               {pages.map((page) => (
